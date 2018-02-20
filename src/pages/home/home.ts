@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { Plugins } from '@capacitor/core';
 
 @Component({
   selector: 'page-home',
@@ -11,4 +12,19 @@ export class HomePage {
 
   }
 
+  grabPhoto() {
+
+    const { Camera } = Plugins;
+
+    Camera.getPhoto({
+        quality: 100,
+        resultType: 'base64'
+    }).then((result) => {
+        console.log(result);
+    }).catch((err) => {
+        console.log(err);
+        console.log('Sorry pal, not going to happen');
+    });
+
+  }
 }
